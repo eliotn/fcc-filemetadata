@@ -1,0 +1,27 @@
+{
+  "name": "fcc-filemetadata",
+  "version": "1.0.0",
+  "description": "Free Code Camp File Metadata challenge",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eliotn/fcc-filemetadata.git"
+  },
+  "keywords": [
+    "Free",
+    "Code",
+    "Camp"
+  ],
+  "author": "eliotn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eliotn/fcc-filemetadata/issues"
+  },
+  "homepage": "https://github.com/eliotn/fcc-filemetadata#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
