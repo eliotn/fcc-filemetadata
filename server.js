@@ -4,7 +4,7 @@ var app = express();
 var busboy = require('busboy')
 //1. save to memory storage
 //2. set limits for the file
-var upload = multer({storage: multer.memoryStorage(), ""})
+var upload = multer({storage: multer.memoryStorage()})
 app.use(express.static(__dirname + '/public'));
 
 app.post('/upload', upload.single('fileToUpload'), function(req, res, next) {
