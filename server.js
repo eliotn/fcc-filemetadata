@@ -1,15 +1,24 @@
 var express = require('express')
-var multer = require('multer')
 var app = express();
-var busboy = require('busboy')
-//1. save to memory storage
-//2. set limits for the file
-var upload = multer({storage: multer.memoryStorage()})
+var Busboy = require('busboy')
 app.use(express.static(__dirname + '/public'));
 
-app.post('/upload', upload.single('fileToUpload'), function(req, res, next) {
-    
-    res.json({"size":req.file.size});
+//don't save to storage, just get the number of bytes and add them together
+app.post('/upload', function(req, res) {
+    var busboy = new Busboy({ headers: req.headers });
+    busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+      console.log('File [' + fieldname + ']: filename: ' + filename);
+      var bytes = 0;
+      file.on('data', function(data) {
+        bytes += data.length;
+        //console.log('For ' + filename + ' I got ' + data.length + ' bytes');
+      });
+      file.on('end', function() {
+        console.log('File [' + fieldname + '] Finished');
+        res.json({"size":bytes});
+      });
+    });
+    req.pipe(busboy);
 })
 app.get('/', function (req, res) {
   res.send('Hello World!');
